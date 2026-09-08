@@ -179,3 +179,24 @@ To add a new provider (e.g. Anthropic, Azure, Bedrock):
 | `context.py` | Context assembly strategy, independent of model choice |
 | `metrics.py` | All KPIs in one place; easy to export to Prometheus/Grafana |
 | `app.py` | Thin Streamlit shell; delegates all logic to modules |
+
+---
+
+## Code quality (SonarCloud)
+
+This repository includes a GitHub Actions workflow
+(`.github/workflows/sonarcloud.yml`) and a `sonar-project.properties` file
+that scan the codebase with [SonarCloud](https://sonarcloud.io) on every push
+to `copilot/build-enterprise-copilot-streamlit` and on every pull request.
+
+To finish enabling SonarCloud analysis for this repository:
+
+1. Import/create the project in SonarCloud under your organization.
+2. Update the `sonar.organization` value in `sonar-project.properties` with
+   your actual SonarCloud organization key (the placeholder value may not
+   match your organization).
+3. Add a repository secret named `SONAR_TOKEN` containing a SonarCloud
+   analysis token (Settings → Secrets and variables → Actions).
+4. Confirm the project key `SaravananP-takeda_platform-tools` matches the
+   project you created in SonarCloud (or update it in
+   `sonar-project.properties`).
