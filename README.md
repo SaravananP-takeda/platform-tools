@@ -189,12 +189,16 @@ This repository includes a GitHub Actions workflow
 that scan the codebase with [SonarCloud](https://sonarcloud.io) on every push
 to `copilot/build-enterprise-copilot-streamlit` and on every pull request.
 
+The `sonarcloud` job is skipped until it is configured, so it will not fail
+CI while the setup below is incomplete.
+
 To finish enabling SonarCloud analysis for this repository:
 
 1. Import/create the project in SonarCloud under your organization.
-2. Update the `sonar.organization` value in `sonar-project.properties` with
-   your actual SonarCloud organization key (the placeholder value may not
-   match your organization).
+2. Add a repository variable named `SONAR_ORGANIZATION` set to your actual
+   SonarCloud organization key (Settings → Secrets and variables → Actions →
+   Variables). The workflow passes this value to the scanner, so no code
+   change is needed once it is set correctly.
 3. Add a repository secret named `SONAR_TOKEN` containing a SonarCloud
    analysis token (Settings → Secrets and variables → Actions).
 4. Confirm the project key `SaravananP-takeda_platform-tools` matches the

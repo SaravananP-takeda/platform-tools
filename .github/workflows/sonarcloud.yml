@@ -14,6 +14,11 @@ permissions:
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
+    # Skip until the repository is configured with a real SonarCloud
+    # organization key. Set the SONAR_ORGANIZATION repository variable
+    # (Settings -> Secrets and variables -> Actions -> Variables) to the
+    # organization key confirmed in SonarCloud to enable this job.
+    if: vars.SONAR_ORGANIZATION != ''
 
     steps:
       - name: Checkout
@@ -25,3 +30,6 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
