@@ -1,0 +1,6 @@
+streamlit>=1.32.0
+numpy>=1.24.0
+pandas>=2.0.0
+python-dotenv>=1.0.0
+# Optional: uncomment for real OpenAI API access
+# openai>=1.0.0
